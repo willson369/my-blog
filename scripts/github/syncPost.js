@@ -14,7 +14,7 @@ const gh = new GitHub({
 const blogOutputPath = '../../data/blog';
 
 if (!GH_USER || !GH_PROJECT_NAME) {
-	console.error('请设置GITHUB_USER和GITHUB_PROJECT_NAME');
+	console.error('请设置GH_USER和GH_PROJECT_NAME'); // 改为正确的变量名
 	process.exit(-1);
 }
 

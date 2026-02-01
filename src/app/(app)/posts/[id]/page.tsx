@@ -148,6 +148,23 @@ const Page = ({ params }: { params: TypeParams }) => {
 								{/* @ts-ignore */}
 								<MDXContent components={MDXComponents} />
 							</div>
+
+							{/* ========== 课程作业：添加作者署名 ========== */}
+							<div className="mt-8 pt-6 border-t border-gray-200 dark:border-gray-700 text-center">
+								<p className="text-sm text-gray-500 dark:text-gray-400">
+									本文由{' '}
+									<span className="font-semibold text-gray-700 dark:text-gray-300">
+										{post.author}
+									</span>{' '}
+									发布
+								</p>
+								<p className="text-xs text-gray-400 dark:text-gray-500 mt-1">
+									转载请注明出处
+								</p>
+							</div>
+							{/* ========== 作业结束 ========== */}
+
+							{/* 上一个，下一个功能 */}
 						</article>
 						{/* 上一个，下一个功能 */}
 						<div className="flex px-4 justify-between mt-8">
