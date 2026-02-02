@@ -13,6 +13,12 @@ const gh = new GitHub({
 
 const blogOutputPath = '../../data/blog';
 
+console.log('=== 调试信息 ===');
+console.log('GH_USER:', GH_USER);
+console.log('GH_PROJECT_NAME:', GH_PROJECT_NAME);
+console.log('请求URL:', `https://api.github.com/repos/${GH_USER}/${GH_PROJECT_NAME}/issues`);
+console.log('仓库是否存在: https://github.com/' + GH_USER + '/' + GH_PROJECT_NAME);
+
 if (!GH_USER || !GH_PROJECT_NAME) {
 	console.error('请设置GH_USER和GH_PROJECT_NAME'); // 改为正确的变量名
 	process.exit(-1);
@@ -49,7 +55,7 @@ ${closeImgTag(body.replace(/<br \/>/g, '\n'))}
 function main() {
 	const filePath = path.resolve(__dirname, blogOutputPath);
 	// 只查询自己的issues，避免别人创建的也更新到博客
-	const creators = ['chaseFunny', 'coderPerseus']; // 添加多个creator
+	const creators = ['willson369']; // 添加多个creator
 	fs.ensureDirSync(filePath);
 	fs.emptyDirSync(filePath);
 	creators.forEach((name) => {
