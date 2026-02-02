@@ -1,72 +1,84 @@
-name: Sync Post
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+require('dotenv').config();
+/* eslint-disable */
+const GitHub = require('github-api');
+const fs = require('fs-extra');
+const path = require('path');
+// console.log(process.env, ' process.env');
+const { GH_TOKEN, GH_USER, GH_PROJECT_NAME } = process.env;
 
-# Controls when the workflow will run
-on:
-  # schedule:
-  #   - cron: "30 1 * * *"
-  # https://docs.github.com/cn/developers/webhooks-and-events/events/issue-event-types
-  issues:
-    types:
-      - opened
-      - closed
-      - edited
-      - renamed
-      - labeled
-      - unlabeled
-      - reopened
-      - committed # 修改？
-  workflow_dispatch:
+const gh = new GitHub({
+	token: GH_TOKEN
+});
 
-# Avoid overlapping runs when multiple issue events happen in quick
-# succession (e.g., labeling and editing) to prevent duplicate CI
-# executions for the same trigger.
-concurrency:
-  group: sync-post-${{ github.event.issue.number || github.run_id }}
-  cancel-in-progress: true
-env:
-  GH_TOKEN: ${{ secrets.GH_TOKEN }}
-  GH_USER: ${{ secrets.GH_USER }}
-  GH_PROJECT_NAME: ${{ secrets.GH_PROJECT_NAME }}
-jobs:
-  Publish:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout 🛎️
-        uses: actions/checkout@v2
+const blogOutputPath = '../../data/blog';
 
-      - name: Setup Node.js 🚀
-        uses: actions/setup-node@v3
-        with:
-          node-version: '20.11.0' # 指定具体的版本号
+console.log('=== 调试信息 ===');
+console.log('GH_USER:', GH_USER);
+console.log('GH_PROJECT_NAME:', GH_PROJECT_NAME);
+console.log('请求URL:', `https://api.github.com/repos/${GH_USER}/${GH_PROJECT_NAME}/issues`);
+console.log('仓库是否存在: https://github.com/' + GH_USER + '/' + GH_PROJECT_NAME);
 
-      - name: Git config 🔧
-        run: |
-          git config --global user.name "willson369"
-          git config --global user.email "zhangziliuqlu@gmail.com"
+if (!GH_USER || !GH_PROJECT_NAME) {
+	console.error('请设置GH_USER和GH_PROJECT_NAME'); // 改为正确的变量名
+	process.exit(-1);
+}
 
-      - name: Display runtime info ✨
-        run: |
-          echo '当前目录：'
-          pwd
-      - name: Install pnpm
-        uses: pnpm/action-setup@v2
-        with:
-          version: 9.6.0 # 或者您想要使用的 pnpm 版本
+// 如果是 img 标签，并且没有闭合，那么就拼接闭合字符
+function closeImgTag(htmlString) {
+	// 使用正则表达式匹配未闭合的 <img> 标签
+	const imgTagRegex = /<img([^>]*)(?<!\/)>/g;
+	// 将未闭合的 <img> 标签替换为自闭合的 <img /> 标签
+	return htmlString.replace(imgTagRegex, '<img$1 />');
+}
 
-      - name: Install 🔧
-        run: pnpm install
+// get blog list
+const issueInstance = gh.getIssues(GH_USER, GH_PROJECT_NAME);
+function generateMdx(issue, fileName) {
+	console.log(issue, 'issue');
+	const { title, labels, created_at, body, html_url, user } = issue;
+	return `---
+title: ${title.trim()}
+date: ${created_at}
+slug: ${fileName}
+author: ${user?.login}：${user?.html_url}
+tags: ${JSON.stringify(labels.map((item) => item.name))}
+---
 
-      # - name: Build ⛏️
-      #   run: pnpm run build
+${closeImgTag(body.replace(/<br \/>/g, '\n'))}
 
-      - name: Update blog files ⛏️
-        run: |
-          pnpm run sync-post
-          git add .
-          git commit -m 'chore(ci): blog sync'
+---
+此文自动发布于：<a href="${html_url}" target="_blank">github issues</a>
+`;
+}
 
-      - name: Pull latest changes from remote
-        run: git pull --rebase origin main
+function main() {
+	const filePath = path.resolve(__dirname, blogOutputPath);
+	// 只查询自己的issues，避免别人创建的也更新到博客
+	const creators = ['willson369']; // 添加多个creator
+	fs.ensureDirSync(filePath);
+	fs.emptyDirSync(filePath);
+	creators.forEach((name) => {
+		issueInstance.listIssues({ creator: name }).then(({ data }) => {
+			let successCount = 0;
+			for (const item of data) {
+				try {
+					const fileName = `post-${item.number}`;
+					const content = generateMdx(item, fileName);
+					fs.writeFileSync(`${filePath}/${fileName}.mdx`, content);
+					console.log(`${filePath}/${fileName}.mdx`, 'success');
+					successCount++;
+				} catch (error) {
+					console.log(error);
+				}
+			}
+			if (successCount === data.length) {
+				console.log('文章全部同步成功！', data.length);
+			} else {
+				console.log('文章同步失败！失败数量=', data.length - successCount);
+			}
+		});
+	});
+}
 
-      - name: Push changes to remote
-        run: git push
+module.exports = main;
