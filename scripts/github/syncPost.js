@@ -23,17 +23,13 @@ on:
 concurrency:
   group: sync-post-${{ github.event.issue.number || github.run_id }}
   cancel-in-progress: true
-
+env:
+  GH_TOKEN: ${{ secrets.GH_TOKEN }}
+  GH_USER: ${{ secrets.GH_USER }}
+  GH_PROJECT_NAME: ${{ secrets.GH_PROJECT_NAME }}
 jobs:
   Publish:
     runs-on: ubuntu-latest
-    
-    # 🔥 环境变量必须在这里定义！
-    env:
-      GH_TOKEN: ${{ secrets.GH_TOKEN }}
-      GH_USER: ${{ secrets.GH_USER }}
-      GH_PROJECT_NAME: ${{ secrets.GH_PROJECT_NAME }}
-    
     steps:
       - name: Checkout 🛎️
         uses: actions/checkout@v2
@@ -41,26 +37,21 @@ jobs:
       - name: Setup Node.js 🚀
         uses: actions/setup-node@v3
         with:
-          node-version: '20.11.0'
+          node-version: '20.11.0' # 指定具体的版本号
 
       - name: Git config 🔧
         run: |
           git config --global user.name "willson369"
           git config --global user.email "zhangziliuqlu@gmail.com"
 
-      - name: Display env info ✨
+      - name: Display runtime info ✨
         run: |
-          echo '环境变量检查：'
-          echo 'GH_USER: $GH_USER'
-          echo 'GH_PROJECT_NAME: $GH_PROJECT_NAME'
-          echo 'GH_TOKEN 存在: $([ -n "$GH_TOKEN" ] && echo "是" || echo "否")'
           echo '当前目录：'
           pwd
-
       - name: Install pnpm
         uses: pnpm/action-setup@v2
         with:
-          version: 9.6.0
+          version: 9.6.0 # 或者您想要使用的 pnpm 版本
 
       - name: Install 🔧
         run: pnpm install
