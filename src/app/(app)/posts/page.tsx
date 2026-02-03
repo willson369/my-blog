@@ -4,7 +4,7 @@ import CoverSwitch from './CoverSwitch';
 import { PostsTimeline } from './PostsTimeline';
 const title = '我的博客列表 | ';
 const description =
-	'记录在编程学习、工作中遇到的问题。我精心整理为技术博客文章合集，涵盖前端开发、React、Next.js等热门话题。发现实用的开发技巧、最佳实践和行业动态，提升您的开发技能。立即浏览最新文章！';
+	'记录在编程学习、工作中遇到的问题。一些技术性的或者自己的感受，立即浏览最新文章！';
 export const metadata = {
 	title,
 	description,
@@ -42,8 +42,8 @@ export default function Posts() {
 					<CoverSwitch />
 				</div>
 				<p className="mt-4 text-base text-zinc-600 dark:text-zinc-400">
-					记录工作，学习，生活中的所见所闻所想，主要分享领域 <b>前端开发</b>
-					，偶尔也会记录 <b>其他内容</b>
+					记录工作，学习，生活中的所见所闻所想，主要分享领域 <b>ai,最新技术</b>
+					，也会记录 <b>其他内容</b>
 				</p>
 			</header>
 			<PostsTimeline posts={sortedPosts} />
