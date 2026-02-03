@@ -8,7 +8,7 @@ const url = new URL(
 export const baseSiteConfig: SiteConfig = {
 	name: 'blog | 前端 | 开发者',
 	description:
-		'我是kevin，我不相信越努力越幸运我只相信越会玩越幸运',
+		'我是kevin，我不相信越努力越幸运，我只相信越会玩越幸运，未来属于有趣的人心理健康的人而不是ai.'
 	url: url.href, //'https://kevin.cn/',
 	// 网站预览图
 	ogImage: url.origin + '/og.png',
