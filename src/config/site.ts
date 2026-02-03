@@ -132,7 +132,7 @@ export const baseSiteConfig: SiteConfig = {
 	},
 	footerItems: [{ href: '/', text: '首页' }],
 	locale: 'zh-CN',
-	siteHostList: ['kevin.cn', 'lucky-snail.vercel.app']
+	siteHostList: ['my-blog-iota-five.vercel.app', ' my-blog-fd7m97tel-willson369s-projects.vercel.app']
 };
 
 const siteMetadata: SiteConfig = {
