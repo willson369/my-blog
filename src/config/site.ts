@@ -5,10 +5,11 @@ const url = new URL(
 		? 'https://kevin.cn/'
 		: 'http://localhost:3000'
 );
+
 export const baseSiteConfig: SiteConfig = {
 	name: 'blog | 前端 | 开发者',
 	description:
-		'我是kevin，我不相信越努力越幸运，我只相信越会玩越幸运，未来属于有趣的人心理健康的人而不是ai.'
+		'我是kevin，我不相信越努力越幸运，我只相信越会玩越幸运，未来属于有趣的人心理健康的人而不是ai.',
 	url: url.href, //'https://kevin.cn/',
 	// 网站预览图
 	ogImage: url.origin + '/og.png',
@@ -132,7 +133,10 @@ export const baseSiteConfig: SiteConfig = {
 	},
 	footerItems: [{ href: '/', text: '首页' }],
 	locale: 'zh-CN',
-	siteHostList: ['my-blog-iota-five.vercel.app', ' my-blog-fd7m97tel-willson369s-projects.vercel.app']
+	siteHostList: [
+		'my-blog-iota-five.vercel.app',
+		'my-blog-fd7m97tel-willson369s-projects.vercel.app'
+	]
 };
 
 const siteMetadata: SiteConfig = {
@@ -154,4 +158,5 @@ const siteMetadata: SiteConfig = {
 		creator: '@haozhan05554957'
 	}
 };
+
 export default siteMetadata;
