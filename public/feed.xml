@@ -4,7 +4,7 @@
         <description><![CDATA[我是幸运的蜗牛，一名充满热情的前端开发工程师。我热衷于探索和体验最新技术，特别是人工智能（AI），并在日常工作中去使用它们，来提升我的工作效率。我的目标是积极参与开源社区，为开源项目贡献自己的力量。正如我的名字，我相信越努力，越幸运]]></description>
         <link>https://luckysnail.cn</link>
         <generator>RSS for Node</generator>
-        <lastBuildDate>Wed, 08 Apr 2026 14:39:47 GMT</lastBuildDate>
+        <lastBuildDate>Wed, 08 Apr 2026 15:18:49 GMT</lastBuildDate>
         <atom:link href="https://luckysnail.cn/feed.xml" rel="self" type="application/rss+xml"/>
         <item>
             <title><![CDATA[2026.2.1感受]]></title>
@@ -12,7 +12,12 @@
             <guid isPermaLink="true">https://luckysnail.cn/posts/post-11</guid>
         </item>
         <item>
-            <title><![CDATA[No title]]></title>
+            <title><![CDATA[Claude Code源码泄露事件学习笔记]]></title>
+            <link>https://luckysnail.cn/posts/claude-code-leak-learning</link>
+            <guid isPermaLink="true">https://luckysnail.cn/posts/claude-code-leak-learning</guid>
+        </item>
+        <item>
+            <title><![CDATA[在焦虑时代，重新相信自己的力量]]></title>
             <link>https://luckysnail.cn/posts/2026.2.1</link>
             <guid isPermaLink="true">https://luckysnail.cn/posts/2026.2.1</guid>
         </item>
@@ -20,11 +25,6 @@
             <title><![CDATA[关于kevin]]></title>
             <link>https://luckysnail.cn/posts/about</link>
             <guid isPermaLink="true">https://luckysnail.cn/posts/about</guid>
-        </item>
-        <item>
-            <title><![CDATA[Claude Code源码泄露事件学习笔记]]></title>
-            <link>https://luckysnail.cn/posts/claude-code-leak-learning</link>
-            <guid isPermaLink="true">https://luckysnail.cn/posts/claude-code-leak-learning</guid>
         </item>
         <item>
             <title><![CDATA[成为神的宣言]]></title>
