@@ -23,8 +23,6 @@ export default function robots(): MetadataRoute.Robots {
 				userAgent: '*',
 				allow: '/'
 			}
-		],
-		sitemap: 'https://www.luckysnail.cn/sitemap.xml',
-		host: 'https://www.luckysnail.cn'
+		]
 	};
 }

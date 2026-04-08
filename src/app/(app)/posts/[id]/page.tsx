@@ -56,12 +56,10 @@ const Page = ({ params }: { params: TypeParams }) => {
 		postIndex++;
 		return post.slug === params.id;
 	});
-	const sortedPosts = allPosts
-		.sort((a, b) => {
-			// 按照日期降序排序
-			return new Date(b.date).getTime() - new Date(a.date).getTime();
-		})
-		.slice(0, allPosts.length - 1);
+	const sortedPosts = allPosts.sort((a, b) => {
+		// 按照日期降序排序
+		return new Date(b.date).getTime() - new Date(a.date).getTime();
+	});
 	if (!post) notFound();
 	const MDXContent = useMDXComponent(post.body.code);
 	console.log(post.readingTime, 'post');

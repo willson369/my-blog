@@ -16,7 +16,7 @@ export const baseSiteConfig: SiteConfig = {
 	// https://nextjs.org/docs/app/api-reference/functions/generate-metadata#metadatabase
 	metadataBase: '/',
 	keywords: [
-		'金克斯',
+		'kevin',
 		'blog',
 		'前端',
 		'开发者',
@@ -27,7 +27,7 @@ export const baseSiteConfig: SiteConfig = {
 	],
 	authors: 'kevin',
 	email: 'zhangziliuqlu@gmail.com',
-	authorsCN: '金克斯',
+	authorsCN: '要是能重来我要选李白',
 	authorsUrl: 'https://github.com/willson369',
 	social: [
 		{

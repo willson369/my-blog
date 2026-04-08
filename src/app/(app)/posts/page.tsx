@@ -2,9 +2,11 @@ import { Container } from '@/components/Container';
 import { allPosts } from 'contentlayer/generated';
 import CoverSwitch from './CoverSwitch';
 import { PostsTimeline } from './PostsTimeline';
+
 const title = '我的博客列表 | ';
 const description =
 	'记录在编程学习、工作中遇到的问题。一些技术性的或者自己的感受，立即浏览最新文章！';
+
 export const metadata = {
 	title,
 	description,
@@ -20,18 +22,12 @@ export const metadata = {
 };
 
 export default function Posts() {
-	// 	{
-	// 	searchParams
-	// }: {
-	// 	searchParams: { s: string };
-	// 	}
-	// const showCover = searchParams ? Boolean(Number(searchParams?.s)) : false;
-	const sortedPosts = allPosts
-		.sort((a, b) => {
-			// 按照日期降序排序
-			return new Date(b.date).getTime() - new Date(a.date).getTime();
-		})
-		.slice(0, allPosts.length - 1);
+	// 修复：使用 slice() 克隆数组后再排序，避免污染全局 allPosts 对象
+	const sortedPosts = allPosts.slice().sort((a, b) => {
+		// 按照日期降序排序
+		return new Date(b.date).getTime() - new Date(a.date).getTime();
+	});
+
 	return (
 		<Container className="min-h-[50vh] mt-16">
 			<header className="mb-6 max-w-2xl">

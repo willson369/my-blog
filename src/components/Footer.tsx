@@ -6,6 +6,7 @@ import React from 'react';
 import { Container } from './Container';
 
 const navigationItems = siteMetadata.navigationItems;
+
 function NavLink({
 	href,
 	children
@@ -42,14 +43,14 @@ export function Footer() {
 				<div className="border-t border-zinc-100 pb-16 pt-10 dark:border-zinc-700/40">
 					<Container.Inner>
 						{/* <div className="mx-auto mb-8 max-w-md">
-							<Newsletter subCount={`${subs?.subCount ?? '0'}`} />
-						</div> */}
+              <Newsletter subCount={`${subs?.subCount ?? '0'}`} />
+            </div> */}
 						<div className="flex flex-col items-center justify-between gap-6 sm:flex-row">
 							<p className="text-sm text-zinc-500/80 dark:text-zinc-400/80">
 								&copy; {new Date().getFullYear()} {siteMetadata.authorsCN}
 								&nbsp;网站已开源：
-								<PeekabooLink href="https://github.com/coderPerseus/blog">
-									luckySnail
+								<PeekabooLink href="https://github.com/willson369/my-blog">
+									kevin
 								</PeekabooLink>
 							</p>
 							<Links />
