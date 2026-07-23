@@ -1,6 +1,6 @@
 'use client';
 
-import { SnailIcon, SparkleIcon } from '@/assets';
+import { SparkleIcon, AtomIcon } from '@/assets';
 import { SocialLink } from '@/components/links/SocialLink';
 import siteMetadata from '@/config/site';
 import { motion } from 'framer-motion';
@@ -17,34 +17,34 @@ function Developer() {
 	);
 }
 
-function Designer() {
+function Builder() {
 	return (
 		<span className="group relative bg-black/5 p-1 dark:bg-white/5">
-			<span className="pointer-events-none absolute inset-0 border border-violet-700/90 opacity-70 group-hover:border-dashed group-hover:opacity-100 dark:border-violet-400/90">
-				<span className="absolute -left-[3.5px] -top-[3.5px] size-1.5 border border-violet-700 bg-zinc-50 dark:border-violet-400" />
-				<span className="absolute -bottom-[3.5px] -right-[3.5px] size-1.5 border border-violet-700 bg-zinc-50 dark:border-violet-400" />
-				<span className="absolute -bottom-[3.5px] -left-[3.5px] size-1.5 border border-violet-700 bg-zinc-50 dark:border-violet-400" />
-				<span className="absolute -right-[3.5px] -top-[3.5px] size-1.5 border border-violet-700 bg-zinc-50 dark:border-violet-400" />
+			<span className="pointer-events-none absolute inset-0 border border-teal-700/90 opacity-70 group-hover:border-dashed group-hover:opacity-100 dark:border-teal-400/90">
+				<span className="absolute -left-[3.5px] -top-[3.5px] size-1.5 border border-teal-700 bg-zinc-50 dark:border-teal-400" />
+				<span className="absolute -bottom-[3.5px] -right-[3.5px] size-1.5 border border-teal-700 bg-zinc-50 dark:border-teal-400" />
+				<span className="absolute -bottom-[3.5px] -left-[3.5px] size-1.5 border border-teal-700 bg-zinc-50 dark:border-teal-400" />
+				<span className="absolute -right-[3.5px] -top-[3.5px] size-1.5 border border-teal-700 bg-zinc-50 dark:border-teal-400" />
 			</span>
-			开源爱好者
+			学生开发者
 		</span>
 	);
 }
 
-function OCD() {
+function AIStack() {
 	return (
 		<span className="group inline-flex items-center">
 			<SparkleIcon className="mr-1 inline-flex transform-gpu transition-transform duration-500 group-hover:rotate-180" />
-			<span>AI 深度患者</span>
+			<span>AI 辅助开发</span>
 		</span>
 	);
 }
 
-function Founder() {
+function Traditional() {
 	return (
 		<span className="group inline-flex items-center">
-			<SnailIcon className="mr-1 inline-flex group-hover:fill-zinc-600/20 dark:group-hover:fill-zinc-200/20" />
-			<span>大学生</span>
+			<AtomIcon className="mr-1 inline-flex group-hover:fill-zinc-600/20 dark:group-hover:fill-zinc-200/20" />
+			<span>也在打传统基本功</span>
 		</span>
 	);
 }
@@ -52,6 +52,14 @@ function Founder() {
 export function Headline() {
 	return (
 		<div className="max-w-3xl">
+			<motion.p
+				className="mb-3 text-sm font-medium tracking-[0.18em] text-teal-700 uppercase dark:text-teal-300"
+				initial={{ opacity: 0, y: 12 }}
+				animate={{ opacity: 1, y: 0 }}
+				transition={{ type: 'spring', damping: 24, stiffness: 120 }}
+			>
+				Kevin · Portfolio & Notes
+			</motion.p>
 			<motion.h1
 				className="xs:text-3xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-4xl lg:text-5xl "
 				initial={{ opacity: 0, y: 30 }}
@@ -63,9 +71,9 @@ export function Headline() {
 					duration: 0.3
 				}}
 			>
-				<Developer />，<Designer />，
+				<Developer />，<Builder />，
 				<span className="block h-4" />
-				<OCD />，<Founder />
+				<AIStack />，<Traditional />
 			</motion.h1>
 			<motion.p
 				className="mt-6 text-base text-zinc-600 dark:text-zinc-400"
@@ -81,6 +89,30 @@ export function Headline() {
 			>
 				<Balancer>{siteMetadata.description}</Balancer>
 			</motion.p>
+			<motion.div
+				className="mt-6 flex flex-wrap gap-3 text-sm text-zinc-600 dark:text-zinc-400"
+				initial={{ opacity: 0, y: 12 }}
+				animate={{ opacity: 1, y: 0 }}
+				transition={{
+					type: 'spring',
+					damping: 40,
+					stiffness: 90,
+					delay: 0.18
+				}}
+			>
+				<span className="rounded-md border border-zinc-200 bg-white/70 px-3 py-1 dark:border-zinc-700 dark:bg-zinc-900/60">
+					Next.js / React
+				</span>
+				<span className="rounded-md border border-zinc-200 bg-white/70 px-3 py-1 dark:border-zinc-700 dark:bg-zinc-900/60">
+					TypeScript
+				</span>
+				<span className="rounded-md border border-zinc-200 bg-white/70 px-3 py-1 dark:border-zinc-700 dark:bg-zinc-900/60">
+					AI Coding Agents
+				</span>
+				<span className="rounded-md border border-zinc-200 bg-white/70 px-3 py-1 dark:border-zinc-700 dark:bg-zinc-900/60">
+					工程化与调试
+				</span>
+			</motion.div>
 			<motion.div
 				className="mt-6 flex gap-6 flex-wrap"
 				initial={{ opacity: 0, y: 10 }}

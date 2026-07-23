@@ -4,8 +4,9 @@ import MDXComponents from '@/components/MDXComponents';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
 import { Separator } from '@/components/ui/separator';
 import siteMetadata from '@/config/site';
+import { getAdjacentPosts, getBlogPosts, getPostBySlug } from '@/lib/posts';
 import { cn } from '@/lib/utils';
-import { allPosts, type Post } from 'contentlayer/generated';
+import { type Post } from 'contentlayer/generated';
 import dayjs from 'dayjs';
 import { useMDXComponent } from 'next-contentlayer/hooks';
 import Image from 'next/image';
@@ -20,17 +21,19 @@ const variantStyles = {
 	secondary:
 		'group rounded-full bg-gradient-to-b from-zinc-50/50 to-white/90 px-3 py-2 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur transition dark:from-zinc-900/50 dark:to-zinc-800/90 dark:ring-white/10 dark:hover:ring-white/20'
 };
+
 interface TypeParams {
 	id: string;
 }
-// 预渲染动态路由时生成所有可能的参数组合。
+
 export async function generateStaticParams() {
-	return allPosts.map((post) => ({
+	return getBlogPosts().map((post) => ({
 		id: post.slug
 	}));
 }
+
 export const generateMetadata = ({ params }: { params: TypeParams }) => {
-	const post = allPosts.find((post) => post.slug === params.id);
+	const post = getPostBySlug(params.id);
 	if (!post) throw new Error(`Post not found for id: ${params.id}`);
 	const title = post.title;
 	const description =
@@ -42,7 +45,7 @@ export const generateMetadata = ({ params }: { params: TypeParams }) => {
 			title,
 			description
 		},
-		titter: {
+		twitter: {
 			title,
 			description
 		},
@@ -51,28 +54,18 @@ export const generateMetadata = ({ params }: { params: TypeParams }) => {
 };
 
 const Page = ({ params }: { params: TypeParams }) => {
-	let postIndex = 0;
-	const post = allPosts.find((post) => {
-		postIndex++;
-		return post.slug === params.id;
-	});
-	const sortedPosts = allPosts.sort((a, b) => {
-		// 按照日期降序排序
-		return new Date(b.date).getTime() - new Date(a.date).getTime();
-	});
+	const { post, prevPost, nextPost } = getAdjacentPosts(params.id);
 	if (!post) notFound();
+
 	const MDXContent = useMDXComponent(post.body.code);
-	console.log(post.readingTime, 'post');
-	// 找到上一个和下一个帖子
-	const prevPost = sortedPosts[postIndex - 2];
-	const nextPost = sortedPosts[postIndex];
+
 	const computeTitle = (p: Post) => {
 		if (p.title.length > 20) {
 			return p.title.slice(0, 20) + '...';
-		} else {
-			return p.title;
 		}
+		return p.title;
 	};
+
 	return (
 		<Container.Outer className="mt-10 lg:mt-16">
 			<Container.Inner className="!px-0">
@@ -131,7 +124,6 @@ const Page = ({ params }: { params: TypeParams }) => {
 										<Tag key={tag}>{tag}</Tag>
 									))}
 								</div>
-								{/* 描述渲染 */}
 								{post.description && (
 									<div className="bg-gray-200 dark:bg-gray-600 relative p-4 rounded-md mt-4">
 										<TagIcon className="absolute left-4 top-4" />
@@ -147,7 +139,6 @@ const Page = ({ params }: { params: TypeParams }) => {
 								<MDXContent components={MDXComponents} />
 							</div>
 
-							{/* ========== 课程作业：添加作者署名 ========== */}
 							<div className="mt-8 pt-6 border-t border-gray-200 dark:border-gray-700 text-center">
 								<p className="text-sm text-gray-500 dark:text-gray-400">
 									本文由{' '}
@@ -160,45 +151,41 @@ const Page = ({ params }: { params: TypeParams }) => {
 									转载请注明出处
 								</p>
 							</div>
-							{/* ========== 作业结束 ========== */}
-
-							{/* 上一个，下一个功能 */}
 						</article>
-						{/* 上一个，下一个功能 */}
-						<div className="flex px-4 justify-between mt-8">
-							{/* 上一个 */}
+						<nav
+							aria-label="文章翻页"
+							className="flex px-4 justify-between gap-4 mt-8"
+						>
 							{prevPost ? (
 								<Link
 									href={`/posts/${prevPost.slug}`}
 									className={cn(
-										'inline-flex items-center justify-center rounded-md  px-4 py-2 text-sm  font-medium text-violet-500  dark:text-violet-300 shadow-sm hover:bg-violet-200 dark:hover:bg-violet-500 focus:outline-none focus:ring-2 focus:ring-violet-600 focus:ring-offset-2'
+										'inline-flex max-w-[45%] items-center justify-center rounded-md px-4 py-2 text-sm font-medium text-teal-700 dark:text-teal-300 shadow-sm hover:bg-teal-50 dark:hover:bg-teal-950/40 focus:outline-none focus:ring-2 focus:ring-teal-600 focus:ring-offset-2'
 									)}
 								>
-									{computeTitle(prevPost)}
+									← {computeTitle(prevPost)}
 								</Link>
 							) : (
 								<span className="leading-10 text-zinc-500 dark:text-zinc-200">
-									已经是第一个了
+									已经是最早一篇
 								</span>
 							)}
 
-							{/* 下一个 */}
 							{nextPost ? (
 								<Link
 									href={`/posts/${nextPost.slug}`}
 									className={cn(
-										'inline-flex items-center justify-center rounded-md  px-4 py-2 text-sm font-medium text-violet-500 dark:text-violet-300 shadow-sm hover:bg-violet-200  dark:hover:bg-violet-500  focus:outline-none focus:ring-2 focus:ring-violet-600 focus:ring-offset-2'
+										'inline-flex max-w-[45%] items-center justify-center rounded-md px-4 py-2 text-sm font-medium text-teal-700 dark:text-teal-300 shadow-sm hover:bg-teal-50 dark:hover:bg-teal-950/40 focus:outline-none focus:ring-2 focus:ring-teal-600 focus:ring-offset-2'
 									)}
 								>
-									{computeTitle(nextPost)}
+									{computeTitle(nextPost)} →
 								</Link>
 							) : (
 								<span className="leading-10 text-zinc-500 dark:text-zinc-200">
-									没有下一个啦
+									已经是最新一篇
 								</span>
 							)}
-						</div>
-						{/* 文章还会出现的地址 */}
+						</nav>
 					</div>
 				</div>
 			</Container.Inner>
