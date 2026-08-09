@@ -4,8 +4,7 @@ import CoverSwitch from './CoverSwitch';
 import { PostsTimeline } from './PostsTimeline';
 
 const title = '我的博客列表 | ';
-const description =
-	'记录编程学习、AI 辅助开发与工程实践中的问题、方法和感受。';
+const description = '记录编程学习、AI 辅助开发与工程实践中的问题、方法和感受。';
 
 export const metadata = {
 	title,

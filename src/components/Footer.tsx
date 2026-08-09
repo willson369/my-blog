@@ -44,9 +44,9 @@ export function Footer() {
 						<div className="flex flex-col items-center justify-between gap-6 sm:flex-row">
 							<p className="text-sm text-zinc-500/80 dark:text-zinc-400/80">
 								&copy; {new Date().getFullYear()} {siteMetadata.authorsCN}
-								&nbsp;· 网站已开源：
-								<PeekabooLink href={siteMetadata.authorsUrl ?? 'https://github.com/willson369'}>
-									kevin
+								&nbsp;·{' '}
+								<PeekabooLink href="https://github.com/willson369">
+									GitHub
 								</PeekabooLink>
 							</p>
 							<Links />

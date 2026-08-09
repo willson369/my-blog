@@ -4,7 +4,7 @@
         <description><![CDATA[Kevin 的技术博客：记录 AI 辅助开发、前端工程与学习路上的真实踩坑与复盘。]]></description>
         <link>https://my-blog-iota-five.vercel.app</link>
         <generator>RSS for Node</generator>
-        <lastBuildDate>Sun, 09 Aug 2026 00:57:07 GMT</lastBuildDate>
+        <lastBuildDate>Sun, 09 Aug 2026 01:12:36 GMT</lastBuildDate>
         <atom:link href="https://my-blog-iota-five.vercel.app/feed.xml" rel="self" type="application/rss+xml"/>
         <item>
             <title><![CDATA[Next.js 静态博客里的两个隐蔽 Bug：列表丢文章与上下篇错乱]]></title>
