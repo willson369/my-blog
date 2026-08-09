@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 		default: siteMetadata.authorsCN
 	},
 	description: siteMetadata.description,
-	keywords: '%s,' + siteMetadata.keywords.join(','),
+	keywords: siteMetadata.keywords,
 	manifest: '/site.webmanifest',
 	openGraph: siteMetadata.openGraph,
 	twitter: siteMetadata.twitter,

@@ -1,35 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title><![CDATA[幸运的蜗牛]]></title>
-        <description><![CDATA[我是幸运的蜗牛，一名充满热情的前端开发工程师。我热衷于探索和体验最新技术，特别是人工智能（AI），并在日常工作中去使用它们，来提升我的工作效率。我的目标是积极参与开源社区，为开源项目贡献自己的力量。正如我的名字，我相信越努力，越幸运]]></description>
-        <link>https://luckysnail.cn</link>
+        <title><![CDATA[kevin | blog]]></title>
+        <description><![CDATA[Kevin 的技术博客：记录 AI 辅助开发、前端工程与学习路上的真实踩坑与复盘。]]></description>
+        <link>https://my-blog-iota-five.vercel.app</link>
         <generator>RSS for Node</generator>
-        <lastBuildDate>Wed, 08 Apr 2026 15:18:49 GMT</lastBuildDate>
-        <atom:link href="https://luckysnail.cn/feed.xml" rel="self" type="application/rss+xml"/>
+        <lastBuildDate>Sun, 09 Aug 2026 01:12:36 GMT</lastBuildDate>
+        <atom:link href="https://my-blog-iota-five.vercel.app/feed.xml" rel="self" type="application/rss+xml"/>
         <item>
-            <title><![CDATA[2026.2.1感受]]></title>
-            <link>https://luckysnail.cn/posts/post-11</link>
-            <guid isPermaLink="true">https://luckysnail.cn/posts/post-11</guid>
+            <title><![CDATA[Next.js 静态博客里的两个隐蔽 Bug：列表丢文章与上下篇错乱]]></title>
+            <description><![CDATA[复盘个人站点中“后端有文章、前端看不全 / 翻页对不上”的根因：可变排序污染、索引错位，以及关于页混进博客流。]]></description>
+            <link>https://my-blog-iota-five.vercel.app/posts/nextjs-blog-pagination-bugs</link>
+            <guid isPermaLink="true">https://my-blog-iota-five.vercel.app/posts/nextjs-blog-pagination-bugs</guid>
+            <pubDate>Wed, 22 Jul 2026 00:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[做一个能用的 LLM 小应用：提示、工具调用与评测比模型选型更重要]]></title>
+            <description><![CDATA[从一次本地助手实验出发，总结 LLM 应用落地时真正决定体验的三件事：任务边界、工具契约、可重复评测。]]></description>
+            <link>https://my-blog-iota-five.vercel.app/posts/llm-app-prompt-tools-eval</link>
+            <guid isPermaLink="true">https://my-blog-iota-five.vercel.app/posts/llm-app-prompt-tools-eval</guid>
+            <pubDate>Tue, 21 Jul 2026 00:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[我把 AI Coding Agent 当成队友之后：真实工作流与边界]]></title>
+            <description><![CDATA[从 Cursor / Claude Code 的日常使用出发，整理一套可复用的 Agent 协作流程：怎么拆任务、怎么验收、什么时候必须亲手接管。]]></description>
+            <link>https://my-blog-iota-five.vercel.app/posts/ai-coding-agent-workflow</link>
+            <guid isPermaLink="true">https://my-blog-iota-five.vercel.app/posts/ai-coding-agent-workflow</guid>
+            <pubDate>Mon, 20 Jul 2026 00:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[学会像水一样，不要死磕到底]]></title>
+            <description><![CDATA[没有天赋那就重复仅限方向正确缺乏熟练度的事情，千万不要葬送自己的自信。]]></description>
+            <link>https://my-blog-iota-five.vercel.app/posts/emotions-dealing</link>
+            <guid isPermaLink="true">https://my-blog-iota-five.vercel.app/posts/emotions-dealing</guid>
+            <pubDate>Thu, 09 Apr 2026 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Claude Code源码泄露事件学习笔记]]></title>
-            <link>https://luckysnail.cn/posts/claude-code-leak-learning</link>
-            <guid isPermaLink="true">https://luckysnail.cn/posts/claude-code-leak-learning</guid>
+            <description><![CDATA[从一次发布事故里拆解 Agent 架构、工具系统与记忆分层，整理成可复用的工程笔记。]]></description>
+            <link>https://my-blog-iota-five.vercel.app/posts/claude-code-leak-learning</link>
+            <guid isPermaLink="true">https://my-blog-iota-five.vercel.app/posts/claude-code-leak-learning</guid>
+            <pubDate>Wed, 08 Apr 2026 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[在焦虑时代，重新相信自己的力量]]></title>
-            <link>https://luckysnail.cn/posts/2026.2.1</link>
-            <guid isPermaLink="true">https://luckysnail.cn/posts/2026.2.1</guid>
-        </item>
-        <item>
-            <title><![CDATA[关于kevin]]></title>
-            <link>https://luckysnail.cn/posts/about</link>
-            <guid isPermaLink="true">https://luckysnail.cn/posts/about</guid>
+            <description><![CDATA[一个普通大学生的自我剖析：从迷茫、压力与内耗中走出来，在平凡日常里寻找属于自己的答案]]></description>
+            <link>https://my-blog-iota-five.vercel.app/posts/self-reflection-believe-in-myself</link>
+            <guid isPermaLink="true">https://my-blog-iota-five.vercel.app/posts/self-reflection-believe-in-myself</guid>
+            <pubDate>Tue, 03 Feb 2026 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[成为神的宣言]]></title>
-            <link>https://luckysnail.cn/posts/start-2026</link>
-            <guid isPermaLink="true">https://luckysnail.cn/posts/start-2026</guid>
+            <description><![CDATA[没有人能救你，你可以选择孤独的死去，也选择可以自救。我注定不是一个普通人。无名小卒还是扬名立万?]]></description>
+            <link>https://my-blog-iota-five.vercel.app/posts/start-2026</link>
+            <guid isPermaLink="true">https://my-blog-iota-five.vercel.app/posts/start-2026</guid>
+            <pubDate>Thu, 29 Jan 2026 00:00:00 GMT</pubDate>
         </item>
     </channel>
 </rss>

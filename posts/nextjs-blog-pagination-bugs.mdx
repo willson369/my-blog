@@ -1,0 +1,129 @@
+---
+title: Next.js 静态博客里的两个隐蔽 Bug：列表丢文章与上下篇错乱
+description: 复盘个人站点中“后端有文章、前端看不全 / 翻页对不上”的根因：可变排序污染、索引错位，以及关于页混进博客流。
+tags: [Next.js, Contentlayer, 前端工程, Bug 复盘]
+slug: nextjs-blog-pagination-bugs
+author: kevin
+date: 2026-07-22
+---
+
+## 现象
+
+这个站一度出现过很典型的“幽灵 Bug”：
+
+- 内容目录里明明有多篇文章
+- 列表页却少显示
+- 点进文章后，“上一篇 / 下一篇”对不上时间线
+
+表面上像分页，实际上是**数据层约定被破坏**。
+
+## 根因 1：对 `allPosts` 原地排序
+
+Contentlayer 导出的 `allPosts` 是模块级数组。如果在页面里直接：
+
+```ts
+const sorted = allPosts.sort((a, b) => +new Date(b.date) - +new Date(a.date));
+```
+
+你会得到两个副作用：
+
+1. 当前页看起来“排序对了”
+2. 其他同时依赖 `allPosts` 的逻辑，读到的已经是被改过的顺序
+
+在开发模式热更新、多路由预渲染时，这种污染会表现成“有时对、有时不对”。
+
+**修法：**永远先拷贝再排。
+
+```ts
+const sorted = allPosts.slice().sort((a, b) => +new Date(b.date) - +new Date(a.date));
+```
+
+更好的做法是抽成 `getBlogPosts()`，全站共用一个不可变入口。
+
+## 根因 2：用未排序数组的下标去取已排序数组
+
+旧逻辑大致是：
+
+```ts
+let postIndex = 0;
+const post = allPosts.find((p) => {
+  postIndex++;
+  return p.slug === params.id;
+});
+const sortedPosts = allPosts.sort(...);
+const prevPost = sortedPosts[postIndex - 2];
+const nextPost = sortedPosts[postIndex];
+```
+
+问题很直接：
+
+- `postIndex` 来自**原始顺序**
+- `prev/next` 却取自**日期排序后的数组**
+
+两套坐标系混用，翻页自然会跳、会丢、会指到错误文章。
+
+**修法：**在同一份排序结果上找当前下标，再取相邻项。
+
+```ts
+const posts = getBlogPosts();
+const index = posts.findIndex((p) => p.slug === slug);
+const prevPost = posts[index + 1]; // 更早
+const nextPost = posts[index - 1]; // 更新
+```
+
+## 根因 3：关于页被当成博客文章
+
+`about.mdx` 既给 `/about` 用，又进了 `allPosts`。  
+如果列表再叠加 `slice(0, allPosts.length - 1)` 这种“藏一篇”的临时方案，用户看到的数量会更混乱：
+
+- 有时少一篇
+- 有时 about 冒出来
+- RSS / sitemap / 列表各自一套规则
+
+**修法：**内容可以复用，展示层要分流。
+
+```ts
+const HIDDEN_FROM_BLOG = new Set(['about']);
+export function getBlogPosts() {
+  return getAllPostsSorted().filter((p) => !HIDDEN_FROM_BLOG.has(p.slug));
+}
+```
+
+列表、sitemap、RSS、上下篇，全部走同一个函数。
+
+## 我学到的工程习惯
+
+1. **共享数据默认当不可变**
+2. **导航关系必须基于同一排序键**
+3. **“临时 slice 掉一篇”几乎总会变成长期债务**
+4. **列表页显示总篇数**，能最早发现回归
+
+最后一点很土，但管用。页面上直接渲染 `12 篇`，比靠感觉点来点去可靠得多。
+
+## 对应到更大的前端问题
+
+这类 Bug 不是 Next.js 独有。任何“源数据一份、多个视图消费”的系统都会遇到：
+
+- 表格排序影响导出顺序
+- 过滤器改了全局 store
+- 详情页左右切换和列表筛选条件不一致
+
+AI 辅助开发时尤其容易复发——模型会写出“当前文件能跑”的代码，却不一定维护跨页面不变量。
+
+所以我现在审查 PR，会专门问一句：
+
+> 这份数据被排序/过滤后，其他消费者还安全吗？
+
+## 小结
+
+博客翻页这种小事，背后仍是老派工程问题：可变状态、索引错位、边界内容污染主流。
+
+修好之后，我给自己留了个检查清单：
+
+- [ ] 列表数量是否等于博客文章数
+- [ ] 最新一篇没有“下一篇”
+- [ ] 最早一篇没有“上一篇”
+- [ ] about 不进时间线
+- [ ] RSS 链接的 slug 与路由一致
+
+如果你也在用 Contentlayer / 静态 MDX 站，建议把这些断言尽早写成脚本。坑不在于难，而在于它会以“偶发”的方式浪费你一下午。

@@ -1,5 +1,5 @@
 import { constructSiteUrl } from '@/lib';
-import { allPosts } from 'contentlayer/generated';
+import { getBlogPosts } from '@/lib/posts';
 import { type MetadataRoute } from 'next';
 
 export function generateStaticParams() {
@@ -26,14 +26,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 		}
 	] satisfies MetadataRoute.Sitemap;
 
-	// 这里删掉了 slice，保留所有文章
-	const slugs = allPosts.sort((a, b) => {
-		return new Date(b.date).getTime() - new Date(a.date).getTime();
-	});
-
-	const dynamicMap = slugs.map((slug) => ({
-		url: constructSiteUrl(`/posts/${slug.slug}`).href,
-		lastModified: new Date(slug.date) // 建议这里也用文章的日期
+	const dynamicMap = getBlogPosts().map((post) => ({
+		url: constructSiteUrl(`/posts/${post.slug}`).href,
+		lastModified: new Date(post.date)
 	})) satisfies MetadataRoute.Sitemap;
 
 	return [...staticMap, ...dynamicMap];
