@@ -3,20 +3,20 @@ import { ProjectCard } from './ProjectCard';
 
 const projects: ProjectItem[] = [
 	{
-		id: 'sparkrpc',
-		code: 'SR',
-		name: 'SparkRPC',
-		url: 'https://sparkrpc.vercel.app/',
-		github: 'https://github.com/willson369/SparkRPC',
+		id: 'hongbi',
+		code: 'HB',
+		name: '红笔',
+		url: 'https://hongbi-production.up.railway.app',
+		github: 'https://github.com/willson369/MyHongBi',
 		description:
-			'面向学习与小规模内部通信的轻量 RPC。用 Java 17 + Netty 4 自研二进制协议，把粘包半包、编解码、代理调用和心跳保活串成一条完整调用链。',
+			'视频一键变小红书爆款笔记。先提炼口播主旨，再按品类爆款模板施工，输出可直接发布的笔记卡，并把网感分做成看得见的创作反馈。',
 		highlights: [
-			'自定义协议帧：Magic + Length Field，稳妥处理 TCP 粘包 / 半包',
-			'JDK 动态代理封装 RequestId 与超时，支持同步 Future 调用',
-			'心跳与空闲检测，异常连接自动摘除，连接可复用',
-			'SPI 可插拔序列化，注册中心适配预留（直连 MVP → ZooKeeper）'
+			'主旨提炼 → 模板施工 → 笔记卡预览：完整内容生产线，不是简单转写',
+			'10 套品类施工模板（职场吐槽 / 种草带货 / 干货知识等），含结构步骤与范文',
+			'规则网感分 0–100：低分自动去 AI 味改写，可解释、可迭代',
+			'支持抖音 / B站 / YouTube / 小红书链接，可选粘贴个人爆款作风格参考'
 		],
-		tags: ['Java 17', 'Netty 4', 'Custom Protocol', 'SPI']
+		tags: ['Python', 'AI 应用', 'OpenRouter', '内容工具']
 	},
 	{
 		id: 'subscription-nft',
