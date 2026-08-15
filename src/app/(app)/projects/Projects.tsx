@@ -3,6 +3,22 @@ import { ProjectCard } from './ProjectCard';
 
 const projects: ProjectItem[] = [
 	{
+		id: 'distributed-compute-rental',
+		code: 'DC',
+		name: '算力分时调度',
+		url: 'https://my-blog-iota-five.vercel.app/posts/distributed-compute-rental-scheduler',
+		github: 'https://github.com/willson369/my-blog',
+		description:
+			'B2B2C 共享算力的排期与抢占方案：同一设备同一时段只能成交一次。查询走短 TTL 多级缓存，抢占用分布式锁 + MySQL version，到期扣费走延迟队列。',
+		highlights: [
+			'本地 Caffeine + Redis：热点排期短缓存，成交后主动失效',
+			'Redisson 锁挡住惊群，落库 UPDATE ... WHERE version=? 防超卖',
+			'RabbitMQ 延迟队列解耦到期扣费与设备重置，消息可重放但不重复扣',
+			'4 节点 × 40 请求抢同一 slot：160 并发只成交 1 次；到期触发误差 < 4ms'
+		],
+		tags: ['Redis', '并发控制', 'RabbitMQ', '系统设计']
+	},
+	{
 		id: 'hongbi',
 		code: 'HB',
 		name: '红笔',
