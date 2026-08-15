@@ -32,7 +32,7 @@ export default function ProjectsPage() {
 					{title}
 				</h1>
 				<p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
-					三个可演示项目，各自负责不同能力切片：网络协议、智能合约、产品交互。
+					精选可演示项目，覆盖 AI 应用、实时协作、链上产品与前端交互。
 					下面是深挖版；如果你想先快速扫一圈，也可以去简历作品站。
 				</p>
 			</header>
@@ -95,7 +95,7 @@ export default function ProjectsPage() {
 							项目深挖
 						</h2>
 					</div>
-					<span className="font-mono text-xs text-zinc-400">3 entries</span>
+					<span className="font-mono text-xs text-zinc-400">5 entries</span>
 				</div>
 				<Projects />
 			</div>
