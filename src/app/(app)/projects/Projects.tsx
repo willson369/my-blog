@@ -49,6 +49,38 @@ const projects: ProjectItem[] = [
 			'Next.js + Chakra UI 搭建成可直接演示的完整前端产品'
 		],
 		tags: ['Next.js', 'Chakra UI', '交互产品', '前端']
+	},
+	{
+		id: 'teamboard',
+		code: 'TB',
+		name: 'TeamBoard',
+		url: 'https://teamboard-one.vercel.app',
+		github: 'https://github.com/willson369/teamboard',
+		description:
+			'团队实时协作白板 MVP。多人同画布编辑，基于 Yjs CRDT 自动合并冲突，配合 Presence、邀请码进房与 Postgres 持久化。',
+		highlights: [
+			'Yjs CRDT：多人同时拖拽便签也不互相覆盖',
+			'邀请码 / 链接进房，Owner / Editor / Viewer 角色分离',
+			'Awareness 呈现光标、头像与选中态，刷新后画布可恢复',
+			'Next.js + Prisma + Postgres；WS 独立部署，适配 Vercel 长连接限制'
+		],
+		tags: ['Next.js', 'Yjs', 'WebSocket', 'Postgres']
+	},
+	{
+		id: 'heigen',
+		code: 'HG',
+		name: '黑根',
+		url: 'https://willson369-refactored-potato.vercel.app',
+		github: 'https://github.com/willson369/Startup-Consultant-Heigen',
+		description:
+			'创业计划指导顾问。把模糊想法推进成经得起评委追问的商业逻辑：验证想法、梳理 BP、准备路演、模拟答辩四条工作流。',
+		highlights: [
+			'四模式顾问：验证想法 / 梳理 BP / 准备路演 / 模拟答辩',
+			'分步进度条引导：先钉死用户与问题，再谈方案与叙事',
+			'右侧项目看板沉淀目标用户、核心问题、证据与下一验证',
+			'支持会话导出与本地记录清理；可接后端持久化与联网检索'
+		],
+		tags: ['AI 顾问', '创业', '产品交互', '前端']
 	}
 ];
 
