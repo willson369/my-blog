@@ -95,7 +95,7 @@ export default function ProjectsPage() {
 							项目深挖
 						</h2>
 					</div>
-					<span className="font-mono text-xs text-zinc-400">5 entries</span>
+					<span className="font-mono text-xs text-zinc-400">7 entries</span>
 				</div>
 				<Projects />
 			</div>

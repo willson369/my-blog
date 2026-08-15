@@ -81,6 +81,37 @@ const projects: ProjectItem[] = [
 			'支持会话导出与本地记录清理；可接后端持久化与联网检索'
 		],
 		tags: ['AI 顾问', '创业', '产品交互', '前端']
+	},
+	{
+		id: 'shenlun-ai',
+		code: 'SL',
+		name: '申论 AI 批改',
+		url: 'https://shenlun-ai-production.up.railway.app',
+		description:
+			'提交题干与作文，异步返回综合得分、维度诊断与可执行修改计划。面向立意、结构、论证、语言四维打分，而不是只给一句空泛评语。',
+		highlights: [
+			'DeepSeek 驱动：立意 / 结构 / 论证 / 语言分项评分',
+			'总评 + 主要问题 + 修改计划，输出可直接落地的改写路径',
+			'支持目标分设定与字数统计，批改过程异步可追踪',
+			'展示 token 消耗、时延与模型信息，方便排查与演示'
+		],
+		tags: ['AI 批改', 'DeepSeek', '教育工具', '异步任务']
+	},
+	{
+		id: 'pixelvault',
+		code: 'PV',
+		name: 'PixelVault',
+		url: 'https://pixelvault-nu.vercel.app',
+		github: 'https://github.com/willson369/pixelvault',
+		description:
+			'小团队 AI 素材库。图片直存腾讯云 COS，AI 自动打标与语义搜索，支持团队空间与分享链接，文件不落本地盘。',
+		highlights: [
+			'上传 jpg / png / webp 直达腾讯云 COS',
+			'AI 自动生成标题、标签与向量（Mock / OpenAI 可切换）',
+			'关键词 + 语义双通道检索，素材更好找',
+			'团队 owner / member 权限与分享链接；Next.js + Prisma + PostgreSQL'
+		],
+		tags: ['Next.js', 'COS', 'PostgreSQL', '语义搜索']
 	}
 ];
 
