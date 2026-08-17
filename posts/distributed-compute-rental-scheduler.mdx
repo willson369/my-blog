@@ -9,7 +9,7 @@ date: 2026-08-15
 
 共享算力平台看起来像“把 GPU / CPU 租出去”，真正难的是 **同一设备的同一时间片，在多租户、多节点、高并发下只能成交一次**，并且到期后账单和设备状态必须自动对齐。
 
-独立站点（不挂在博客路径下）：[算力分时调度](https://temporary-agile-flint-m9smnl8.vercel.app)。内核集中在一个 `lease-engine` 文件里：Redis `SET NX` 锁、`ZSET` 延迟队列、`INCR` 滑动窗口、pipeline 缓存，不拆一堆小文件、不加会撑爆 node_modules 的客户端库。
+独立项目：[willson369/compute-lease](https://github.com/willson369/compute-lease)。内核集中在一个 `lease-engine` 文件里：Redis `SET NX` 锁、`ZSET` 延迟队列、`INCR` 滑动窗口、pipeline 缓存，不拆一堆小文件、不加会撑爆 node_modules 的客户端库。
 
 接上 `UPSTASH_REDIS_REST_URL` 后走无连接 HTTP Redis，适合 Serverless 上万人同时打接口。
 
