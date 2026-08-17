@@ -6,17 +6,17 @@ const projects: ProjectItem[] = [
 		id: 'distributed-compute-rental',
 		code: 'DC',
 		name: '算力分时调度',
-		url: 'https://my-blog-iota-five.vercel.app/posts/distributed-compute-rental-scheduler',
+		url: 'https://my-blog-iota-five.vercel.app/projects/compute',
 		github: 'https://github.com/willson369/my-blog',
 		description:
-			'B2B2C 共享算力的排期与抢占方案：同一设备同一时段只能成交一次。查询走短 TTL 多级缓存，抢占用分布式锁 + MySQL version，到期扣费走延迟队列。',
+			'同一设备同一时段只能成交一次。浏览器里跑完整调度内核：短 TTL 多级缓存、Web Lock 互斥、version 防超卖、到期自动扣费。',
 		highlights: [
-			'本地 Caffeine + Redis：热点排期短缓存，成交后主动失效',
-			'Redisson 锁挡住惊群，落库 UPDATE ... WHERE version=? 防超卖',
-			'RabbitMQ 延迟队列解耦到期扣费与设备重置，消息可重放但不重复扣',
-			'4 节点 × 40 请求抢同一 slot：160 并发只成交 1 次；到期触发误差 < 4ms'
+			'SKU 计价：CU = vCPU + GPU 权重，按卡时出账，不发明 TFLOPS 公式',
+			'抢占：Web Lock 挡惊群，落库 version CAS；多标签页就是多节点',
+			'到期扫单扣费，消息可重放不重复扣；12 秒压缩时段方便现场看重置',
+			'一键 160 并发打同一 slot，成交必须是 1'
 		],
-		tags: ['Redis', '并发控制', 'RabbitMQ', '系统设计']
+		tags: ['调度内核', '乐观锁', '延迟队列', 'Next.js']
 	},
 	{
 		id: 'hongbi',
