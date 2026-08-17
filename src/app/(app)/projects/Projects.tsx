@@ -6,7 +6,7 @@ const projects: ProjectItem[] = [
 		id: 'distributed-compute-rental',
 		code: 'DC',
 		name: '算力分时调度',
-		url: 'https://temporary-express-cello-j4xvf71.vercel.app',
+		url: 'https://compute-lease.vercel.app',
 		github: 'https://github.com/willson369/compute-lease',
 		description:
 			'服务端 Redis 高并发调度：SET NX 分布式锁、ZSET 延迟队列、滑动窗口限流、Caffeine+Redis 多级缓存。同一时段只能成交一次。',
