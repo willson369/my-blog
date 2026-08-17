@@ -2,6 +2,8 @@ import { withContentlayer } from 'next-contentlayer';
 import generate from './scripts/generate-rss.js';
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+	// 静态导出
+	output: 'export',
 	reactStrictMode: true,
 	swcMinify: true,
 	images: {

@@ -4,8 +4,15 @@
         <description><![CDATA[Kevin 的技术博客：记录 AI 辅助开发、前端工程与学习路上的真实踩坑与复盘。]]></description>
         <link>https://my-blog-iota-five.vercel.app</link>
         <generator>RSS for Node</generator>
-        <lastBuildDate>Sun, 09 Aug 2026 01:12:36 GMT</lastBuildDate>
+        <lastBuildDate>Mon, 17 Aug 2026 01:38:57 GMT</lastBuildDate>
         <atom:link href="https://my-blog-iota-five.vercel.app/feed.xml" rel="self" type="application/rss+xml"/>
+        <item>
+            <title><![CDATA[分布式算力分时租赁调度：把时间片冲突做成可验证的并发方案]]></title>
+            <description><![CDATA[B2B2C 共享算力的核心不是“能租”，而是同一时段只能成交一次。本文把排期查询、抢占租赁、到期扣费拆成缓存、分布式锁、乐观锁和延迟队列，并用多节点仿真验证。]]></description>
+            <link>https://my-blog-iota-five.vercel.app/posts/distributed-compute-rental-scheduler</link>
+            <guid isPermaLink="true">https://my-blog-iota-five.vercel.app/posts/distributed-compute-rental-scheduler</guid>
+            <pubDate>Sat, 15 Aug 2026 00:00:00 GMT</pubDate>
+        </item>
         <item>
             <title><![CDATA[Next.js 静态博客里的两个隐蔽 Bug：列表丢文章与上下篇错乱]]></title>
             <description><![CDATA[复盘个人站点中“后端有文章、前端看不全 / 翻页对不上”的根因：可变排序污染、索引错位，以及关于页混进博客流。]]></description>

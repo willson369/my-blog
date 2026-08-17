@@ -21,10 +21,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 			lastModified: new Date()
 		},
 		{
-			url: constructSiteUrl('/projects/compute').href,
-			lastModified: new Date()
-		},
-		{
 			url: constructSiteUrl('/about').href,
 			lastModified: new Date()
 		}
