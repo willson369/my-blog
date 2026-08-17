@@ -9,7 +9,9 @@ date: 2026-08-15
 
 共享算力平台看起来像“把 GPU / CPU 租出去”，真正难的是 **同一设备的同一时间片，在多租户、多节点、高并发下只能成交一次**，并且到期后账单和设备状态必须自动对齐。
 
-可交互调度台：[ /projects/compute ](/projects/compute)。内核在现有博客里，没有另起工程、也没有引入 Redis/Java 这类会把磁盘打很满的依赖。
+可交互调度台：[ /projects/compute ](/projects/compute)。内核集中在 `src/lib/lease-engine.ts` 一个文件里：Redis `SET NX` 锁、`ZSET` 延迟队列、`INCR` 滑动窗口、pipeline 缓存，不拆一堆小文件、不加会撑爆 node_modules 的客户端库。
+
+接上 `UPSTASH_REDIS_REST_URL` 后走无连接 HTTP Redis，适合 Serverless 上万人同时打接口。
 
 ## 1. 市场调研：B2B2C 共享经济的调度难点
 

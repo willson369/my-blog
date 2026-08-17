@@ -9,14 +9,14 @@ const projects: ProjectItem[] = [
 		url: 'https://my-blog-iota-five.vercel.app/projects/compute',
 		github: 'https://github.com/willson369/my-blog',
 		description:
-			'同一设备同一时段只能成交一次。浏览器里跑完整调度内核：短 TTL 多级缓存、Web Lock 互斥、version 防超卖、到期自动扣费。',
+			'服务端 Redis 高并发调度：SET NX 分布式锁、ZSET 延迟队列、滑动窗口限流、Caffeine+Redis 多级缓存。同一时段只能成交一次。',
 		highlights: [
-			'SKU 计价：CU = vCPU + GPU 权重，按卡时出账，不发明 TFLOPS 公式',
-			'抢占：Web Lock 挡惊群，落库 version CAS；多标签页就是多节点',
-			'到期扫单扣费，消息可重放不重复扣；12 秒压缩时段方便现场看重置',
-			'一键 160 并发打同一 slot，成交必须是 1'
+			'Redis SET NX PX 挡惊群；落库 version CAS 防超卖，万人同时点也不会超卖',
+			'ZSET 到期队列 + pipeline 失效缓存；INCR 滑动窗口限流',
+			'Upstash REST 无连接复用，Serverless 下不怕 1 万个函数一人一条 TCP',
+			'一键 160 并发打同一 slot，成交必须是 1；MONITOR 能看见真实命令'
 		],
-		tags: ['调度内核', '乐观锁', '延迟队列', 'Next.js']
+		tags: ['Redis', 'SET NX', 'ZSET', '限流']
 	},
 	{
 		id: 'hongbi',
